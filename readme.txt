@@ -5,4 +5,7 @@ hello word
 git Ê¹ÓÃ 
 python Ñ§Ï°¡£
 yii¿ò¼Ü
-Creating a new branch is quick & simple.
+
+Creating a new branch is quick AND simple.
+
+

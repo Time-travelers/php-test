@@ -5,5 +5,4 @@ hello word
 git Ê¹ÓÃ 
 python Ñ§Ï°¡£
 yii¿ò¼Ü
-
-xwsh branch
+Creating a new branch is quick & simple.

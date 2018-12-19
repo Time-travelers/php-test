@@ -1,0 +1,13 @@
+{
+    "name": "xwsh/test",
+    "description": "hello world",
+    "require": {
+        "monolog/monolog": "^1.24"
+    },
+    "authors": [
+        {
+            "name": "xu.weishuai",
+            "email": "xu.weishuai@xcar.com.cn"
+        }
+    ]
+}

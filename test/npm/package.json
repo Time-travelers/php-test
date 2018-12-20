@@ -1,0 +1,15 @@
+{
+  "name": "xwhs",
+  "version": "1.0.0",
+  "description": "xwsh",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "vue": "^2.5.17"
+  }
+}

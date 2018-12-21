@@ -2,3 +2,5 @@
 [2018-12-20 09:00:29] name.ERROR: Bar [] []
 [2018-12-20 09:02:07] name.WARNING: Foo [] []
 [2018-12-20 09:02:07] name.ERROR: Bar [] []
+[2018-12-21 05:23:39] name.WARNING: Foo [] []
+[2018-12-21 05:23:39] name.ERROR: Bar [] []

@@ -1,0 +1,9 @@
+thrift -r --gen php:server HelloThrift.thrift 
+命令会在当前目录下生成一个  gen-php
+thrift -r --gen php HelloThrift.thrift 
+thrift -r --gen jave HelloThrift.thrift 
+
+
+5.运行服务。在项目的根下运行命令  php -S localhost:8080
+
+6.运行客户端进行测试。直接使用 php client.php --http 命令。可以看到 Hello World! 成功。

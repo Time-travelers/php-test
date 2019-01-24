@@ -11,6 +11,57 @@ echo "\n";
 
 
 
+//self static 关键字区别
+class A {
+    public static function who() {
+        echo __CLASS__;
+    }
+    public static function test() {
+//        self::who();//输出A
+        static::who();//输出B
+    }
+}
+
+class B extends A {
+    public static function who() {
+        echo __CLASS__;
+    }
+}
+
+B::test();//输出A
+die;
+
+// 抽象类静态方法调用
+abstract class abb{
+
+    public  static $name='xwsh';
+    public  static function getName(){
+        echo self::$name;
+    }
+}
+abb::getName();
+echo abb::$name;
+die;
+
+//匿名函数
+$name=11;
+$name=function ($a,$b) use($name){
+    echo $name;
+};
+var_dump($name);
+die;
+
+// compact 建立一个数组包含变量名和他们的值  和extract 相反 可递归调用
+
+$a=111;
+$b=222;
+$c=333;
+var_dump(compact('ba==','b','a',['c','e']));
+
+//和extract 相反 将数组拆成变量名为key值为value 写入当前的符号表。 可递归调用
+extract(['cc'=>2,3,4]);
+echo $cc;
+die;
 $bet_sp = 2.05;
 // 浮点数精度问题。 机器的小数精度有限，存放不了这么多位数，必须进行四舍五入
 echo floor($bet_sp*100)/100;

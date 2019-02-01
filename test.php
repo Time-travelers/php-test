@@ -9,8 +9,62 @@
 echo "<pre>";
 echo "\n";
 
+//parse_url 解析url到数组
+var_dump(parse_url('http://www.aa.com/hello/test.php.html?a=3&b=4'));
+
+echo 'aa','bb';
+die;
+//require_once  include_once 检查并只导入一次
+include 'index1.php'; //报错 继续执行
+
+require 'index1.php';// 报错 程序终止
+echo strtotime('-1 day');die;
+echo strtotime('-1 year');die; //转时间戳
+
+die;
 
 
+
+echo date('Y-m'); //默认当时时间
+
+
+
+echo 'xxx';
+print 'xxx';// 输出字符串
+print_r([]); //递归打印数组对象
+var_dump([]);// 打印信息
+
+// 汉字反转
+function str_rev_gb($str){
+    //判断输入的是不是utf8类型的字符，否则退出
+    if(!is_string($str)||!mb_check_encoding($str,'UTF-8')){
+        exit("输入类型不是UTF8类型的字符串");
+    }
+    $array=array();
+    //将字符串存入数组
+    $l=mb_strlen($str,'UTF-8');//在mb_strlen计算时，选定内码为UTF8，则会将一个中文字符当作长度1来计算
+    for($i=0;$i<$l;$i++){
+        $array[]=mb_substr($str,$i,1,'UTF-8');
+    }
+    //反转字符串
+    krsort($array);
+    //拼接字符串
+    $string=implode($array);
+    return $string;
+}
+echo str_rev_gb('大家好');
+// 英文字符串反转 同php函数strrev
+function strrevnew($str)
+{
+    $len=strlen($str);
+    $newstr = '';
+    for($i=$len-1;$i>=0;$i--)
+    {
+        $newstr .= $str{$i};
+    }
+    return $newstr;
+}
+echo strrevnew('xwsh');
 //self static 关键字区别
 class A {
     public static function who() {

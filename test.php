@@ -9,6 +9,118 @@
 echo "<pre>";
 echo "\n";
 
+
+
+
+$data =array_rand(range(1,3000),300);
+//range创建一个包含从 "0" 到 "5" 之间的元素范围的数组 步长为1   array_rand 取随机的300个
+//$data = [11,11, 67, 3, 121, 71, 6, 100, 45, 2, 19, 17, 99, 40, 3, 22];
+// 冒泡排序  它重复地走访过要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来。
+function sort1($data){
+
+    $len=count($data);
+    for($i=0;$i<$len;$i++){
+
+        for ($j=$i;$j<$len;$j++){
+            if($data[$j]>$data[$i]){
+                $temp=$data[$j];
+                $data[$j]=$data[$i];
+                $data[$i]=$temp;
+            }
+        }
+
+    }
+    return $data;
+}
+//function sort1($data){
+//
+//    $len=count($data);
+//    for($i=0;$i<$len;$i++){
+//
+//        for ($j=0;$j<$len-1;$j++){
+//            if($data[$j]>$data[$j+1]){
+//                $temp=$data[$j];
+//                $data[$j]=$data[$j+1];
+//                $data[$j+1]=$temp;
+//            }
+//        }
+//
+//    }
+//    return $data;
+//}
+
+// 选择排序 每一次从待排序的数据元素中选出最小（或最大）的一个元素，存放在序列的起始位置，直到全部待排序的数据元素排完。
+function select($data){
+    $temp=0;
+    $len=count($data);
+    for($i=0;$i<$len;$i++){
+        $miniVal=$data[$i];//假设$i就是最小值
+        $minValIndex=$i;
+        //找最小值
+        for($j=$i+1;$j<$len;$j++){
+            if($miniVal>$data[$j]){
+                $miniVal=$data[$j];
+                $minValIndex = $j;
+            }
+
+        }
+//       存放在序列的起始位置
+        $temp=$data[$i];
+        $data[$i]=$miniVal;
+        $data[$minValIndex]=$temp;
+
+    }
+    return $data;
+
+}
+//快速排序 通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，
+//* 然后再按此方法对这两部分数据分别进行快速排序，整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+function quickSort($data){
+    if(!isset($data[1])){
+        return $data;
+    }
+    $temp=$data[0];
+    $leftArray=[];
+    $reghtArray=[];
+    $in=[];
+    foreach ($data as $k=>$v){
+        if($v<$temp){
+            $leftArray[]=$v;
+        }
+        if($v>$temp){
+            $reghtArray[]=$v;
+        }
+        if($v==$temp){
+            $in[]=$v;
+        }
+    }
+    $leftArray=quickSort($leftArray);
+//    $leftArray[]=$temp;
+    foreach ($in as $v){
+        $leftArray[]=$v;
+    }
+
+    $reghtArray=quickSort($reghtArray);
+    return array_merge($leftArray,$reghtArray);
+
+}
+//print_r(select($data));
+print_r(quickSort($data));
+die;
+$t1=microtime(true);
+$data1=sort1($data);
+$t2=microtime(true);
+sort($data);
+$t3=microtime(true);
+print_r($data1);
+print_r($data);
+echo $t1.'<br>';
+echo $t2.'<br>';
+echo $t3.'<br>';
+echo $t2-$t1.'<br>';
+echo $t3-$t2.'<br>';
+die;
+
 //parse_url 解析url到数组
 var_dump(parse_url('http://www.aa.com/hello/test.php.html?a=3&b=4'));
 

@@ -203,25 +203,13 @@ call_user_func("demo::foo",1);
 //echo foo();
 die;
 
-$str="contract_status:1
-order_id:1
-order_name:
-contract_code:
-customer_name:
-order_type:
-order_submitter:
-contract_submitter:
-area:
-city:
-finacial:
-is_modification:
-refund:
-order_start_time:
-order_end_time:
-start_time:
-end_time:
-price_start:
-price_end:";
+$str="cid:1
+company:33333
+mutex_cid:2
+mutex_company:test2
+remark:333
+id:1
+keyword:test";
 
 $arr=explode("\r\n",$str);
 $res=[];

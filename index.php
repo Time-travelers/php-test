@@ -9,11 +9,14 @@
 echo 'hello welcome to xwsh page';
 
 
-$str="brand_type:1
-relation_brand_name:xxxxxx
-bids:1,2
-bnames:奥迪,宝马
-remark:bbb";
+$str="channel_ids[]:100038
+series_ids[]:566
+level_ids[]:4
+area_ids[]:10000
+start_time:2019-1-1
+end_time:2019-2-1
+p:
+p_size:";
 
 $arr=explode("\r\n",$str);
 $res=[];

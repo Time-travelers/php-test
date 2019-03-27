@@ -10,6 +10,80 @@ echo "<pre>";
 echo "\n";
 
 
+print_r( get_declared_classes());
+die;
+
+//Tick（时钟周期）是一个在 declare 代码段中解释器每执行 N 条可计时的低级语句就会发生的事件。
+//在每个 tick 中出现的事件是由 register_tick_function() 来指定的。
+declare(ticks=1);
+
+// A function called on each tick event
+function tick_handler()
+{
+    echo "tick_handler() called\n";
+}
+
+register_tick_function('tick_handler');
+
+$a = 1;
+
+if ($a > 0) {
+    $a += 2;
+    print($a);
+}
+die;
+echo  PHP_SAPI;
+
+// 创建一个有异常处理的函数 try 找不到catche 会报错
+//function checkNum($number)
+//{
+//    if($number>1)
+//    {
+//        throw new Exception("Value must be 1 or below");
+//    }
+//    return true;
+//}
+//
+//// 触发异常
+//checkNum(2);die;
+
+//PHP 7 改变了大多数错误的报告方式。不同于 PHP 5 的传统错误报告机制，现在大多数错误被作为 Error 异常抛出。
+//
+//这种 Error 异常可以像普通异常一样被 try / catch 块所捕获。如果没有匹配的 try / catch 块， 则调用异常处理函数
+//（由 set_exception_handler() 注册）进行处理。 如果尚未注册异常处理函数，则按照传统方式处理：被报告为一个致命错误（Fatal Error）。
+//
+//Error 类并不是从 Exception 类 扩展出来的，所以用 catch (Exception $e) { ... } 这样的代码是捕获不 到 Error 的
+//你可以用 catch (Error $e) { ... } 这样的代码，或者通过注册异常处理函数（ set_exception_handler()）来捕获 Error
+
+set_exception_handler('appException');
+function appException(){
+  echo '没有匹配的 try / catch 块， 则调用异常处理函数（由 set_exception_handler() 注册）进行处理';
+}
+class MathOperations
+{
+   protected $n = 10;
+
+   // 求余数运算，除数为 0，抛出异常
+   public function doOperation()
+   {
+      try {
+          throw new Exception('this is a exception');
+         $value = $this->n % 0;
+         return $value;
+      }catch (Exception $e) {
+
+          return $e->getMessage();
+      } catch (Error $e) {
+
+         return $e->getMessage();
+      }
+   }
+
+}
+
+$mathOperationsObj = new MathOperations();
+print($mathOperationsObj->doOperation());
+die;
 
 
 $data =array_rand(range(1,3000),300);

@@ -1,6 +1,7 @@
 # -*- coding:UTF-8 -*-
 from bs4 import BeautifulSoup
 import requests, sys
+import  time
 
 """
 类说明:下载《笔趣看》网小说《一念永恒》
@@ -14,8 +15,8 @@ Modify:
 class downloader(object):
 
 	def __init__(self):
-		self.server = 'http://www.biqukan.com/'
-		self.target = 'http://www.biqukan.com/1_1094/'
+		self.server = 'http://www.54gmgm.com:8888/'
+		self.target = 'http://www.54gmgm.com:8888/news/class/'
 		self.names = []			#存放章节名
 		self.urls = []			#存放章节链接
 		self.nums = 0			#章节数
@@ -66,12 +67,13 @@ class downloader(object):
 		# 	self.urls.append(self.server + each.get('href'))
 
 		max = int(input("输入导入的页码最大值  :"))
+		nu = int(input("输入导入的数量  :"))
 		self.nums = max-1
-		i=1
-		while i<max:
+		i=max
+		while i>max-nu:
 			self.names.append(str(i))
 			self.urls.append(self.target+str(i)+'.html')
-			i += 1
+			i -= 1
 
 
 
@@ -87,11 +89,15 @@ class downloader(object):
 	"""
 	def get_contents(self, target):
 		req = requests.get(url = target)
+		print(req.encoding)
 		html = req.text
+
 		bf = BeautifulSoup(html, "html.parser")
-		texts = bf.find_all('div', class_ = 'showtxt')
+		texts = bf.find_all('div', class_ = 'show')
 		try:
 			texts = texts[0].text.replace('\xa0' * 8, '\n\n')
+			texts = texts.encode("iso-8859-1").decode('gbk').encode('utf8')
+			print(texts)
 		except IndexError:
 			pass
 
@@ -123,6 +129,7 @@ if __name__ == "__main__":
 	for i in range(dl.nums):
 		print(dl.names[i])
 		print(dl.urls[i])
+		time.sleep(10)
 		dl.writer(dl.names[i], '小说.txt', dl.get_contents(dl.urls[i]))
 		sys.stdout.write("  已下载:%.3f%%" %  float(i/dl.nums*100) + '\r')
 		sys.stdout.flush()

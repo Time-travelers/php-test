@@ -47,6 +47,7 @@ if __name__=='__main__':
         #获取正文文本，并将空格替换为换行符
         content_text = str(content_tag.text.replace('\xa0','\n'))
         #将当前章节，写入以章节名字命名的txt文件
+        print(dir_path+'/'+chapter_name+'.txt')
         with open(dir_path+'/'+chapter_name+'.txt', 'w') as f:
             f.write('本文网址:'+chapter_url)
             f.write(content_text)

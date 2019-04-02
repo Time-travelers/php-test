@@ -68,7 +68,7 @@ class downloader(object):
 
 		max = int(input("输入导入的页码最大值  :"))
 		nu = int(input("输入导入的数量  :"))
-		self.nums = max-1
+		self.nums = nu
 		i=max
 		while i>max-nu:
 			self.names.append(str(i))
@@ -89,14 +89,16 @@ class downloader(object):
 	"""
 	def get_contents(self, target):
 		req = requests.get(url = target)
-		print(req.encoding)
-		html = req.text
-
-		bf = BeautifulSoup(html, "html.parser")
-		texts = bf.find_all('div', class_ = 'show')
+		req.encoding = 'gbk'
 		try:
+			print(req.encoding)
+			html = req.text
+			# html = html.encode("iso-8859-1").decode('gbk').encode('utf8')
+			bf = BeautifulSoup(html, "html.parser")
+			texts = bf.find_all('div', class_ = 'show')
+
 			texts = texts[0].text.replace('\xa0' * 8, '\n\n')
-			texts = texts.encode("iso-8859-1").decode('gbk').encode('utf8')
+
 			print(texts)
 		except IndexError:
 			pass
@@ -116,7 +118,7 @@ class downloader(object):
 	"""
 	def writer(self, name, path, text):
 		write_flag = True
-		with open(path, 'a', encoding='utf-8') as f:
+		with open(path, 'a+',encoding='utf-8') as f:
 			f.write(name + '\n')
 			f.writelines(text)
 			f.write('\n\n')
@@ -129,7 +131,7 @@ if __name__ == "__main__":
 	for i in range(dl.nums):
 		print(dl.names[i])
 		print(dl.urls[i])
-		time.sleep(10)
+		time.sleep(5)
 		dl.writer(dl.names[i], '小说.txt', dl.get_contents(dl.urls[i]))
 		sys.stdout.write("  已下载:%.3f%%" %  float(i/dl.nums*100) + '\r')
 		sys.stdout.flush()

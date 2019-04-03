@@ -40,7 +40,7 @@ class downloader(object):
 			a_bf = BeautifulSoup(str(div[0]), "html.parser")
 			a = a_bf.find_all('a')
 			print(a)
-			self.nums = len(a[1:])								#剔除不必要的章节，并统计章节数
+			self.nums = len(a[3:-3])								#剔除不必要的章节，并统计章节数
 			for each in a[1:]:
 				self.names.append(each.string)
 				self.urls.append(self.server + each.get('href'))
@@ -132,11 +132,11 @@ class downloader(object):
 if __name__ == "__main__":
 	dl = downloader()
 
-	page=list(range(1,5))
+	page=list(range(1,50))
 	target=dl.target;
 
 	for i in page:
-		dl.target=target+str(i+1)+'.html'
+		dl.target=target+str(i+35)+'.html'
 		print(dl.target)
 		dl.get_download_url()
 		print('开始下载：')
@@ -144,7 +144,7 @@ if __name__ == "__main__":
 		for i in range(dl.nums):
 			print(dl.names[i])
 			print(dl.urls[i])
-			time.sleep(5)
+			time.sleep(10)
 			dl.writer(dl.names[i], '小说.txt', dl.get_contents(dl.urls[i]))
 			sys.stdout.write("  已下载:%.3f%%" %  float(i/dl.nums*100) + '\r')
 			sys.stdout.flush()

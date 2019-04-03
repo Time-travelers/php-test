@@ -16,7 +16,7 @@ class downloader(object):
 
 	def __init__(self):
 		self.server = 'http://www.54gmgm.com:8888/'
-		self.target = 'http://www.54gmgm.com:8888/news/class/'
+		self.target = 'http://www.54gmgm.com:8888/news/other/19_'
 		self.names = []			#存放章节名
 		self.urls = []			#存放章节链接
 		self.nums = 0			#章节数
@@ -36,11 +36,12 @@ class downloader(object):
 			req = requests.get(url = self.target)
 			html = req.text
 			div_bf = BeautifulSoup(html, "html.parser")
-			div = div_bf.find_all('div', class_ = 'listmain')
+			div = div_bf.find_all('ul', class_ = 'article-list')
 			a_bf = BeautifulSoup(str(div[0]), "html.parser")
 			a = a_bf.find_all('a')
-			self.nums = len(a[15:])								#剔除不必要的章节，并统计章节数
-			for each in a[15:]:
+			print(a)
+			self.nums = len(a[1:])								#剔除不必要的章节，并统计章节数
+			for each in a[1:]:
 				self.names.append(each.string)
 				self.urls.append(self.server + each.get('href'))
 		except IndexError:
@@ -135,7 +136,7 @@ if __name__ == "__main__":
 	target=dl.target;
 
 	for i in page:
-		dl.target=target+str(i)
+		dl.target=target+str(i+1)+'.html'
 		print(dl.target)
 		dl.get_download_url()
 		print('开始下载：')

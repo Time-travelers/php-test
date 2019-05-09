@@ -3,7 +3,9 @@
     "description": "hello world",
     "require": {
         "monolog/monolog": "^1.24",
-        "chrisboulton/php-resque": "^1.2"
+        "chrisboulton/php-resque": "^1.2",
+        "php-amqplib/php-amqplib": "^2.9"
+
     },
     "authors": [
         {

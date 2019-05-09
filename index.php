@@ -8,15 +8,33 @@
 
 echo 'hello welcome to xwsh page';
 
+echo gettype(date('H',(9)*3600));
 
-$str="channel_ids[]:100038
-series_ids[]:566
-level_ids[]:4
-area_ids[]:10000
-start_time:2019-1-1
-end_time:2019-2-1
-p:
-p_size:";
+//for($i=0;$i<24;$i++){
+//    $key=date('H',$i*3600);
+//    $t[$key]=4;
+//}
+//echo json_encode($t);
+//die;
+
+$arr=[1,6,3,4,8];
+$arr = array("00"=>"2","03"=>"50","10"=>"30","11"=>"30");
+ksort($arr);
+print_r($arr);
+
+
+die;
+$str="id:14
+m_id:2794
+order_id:60061
+url_state:
+url_type:
+channel_ids:
+publication_adv_id:
+series_ids:
+level_ids:
+price_tag_ids:
+area_ids:";
 
 $arr=explode("\r\n",$str);
 $res=[];

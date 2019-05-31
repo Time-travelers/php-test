@@ -6,7 +6,53 @@
  * Time: 13:24
  */
 
-echo 'hello welcome to xwsh page';
+echo 'hello welcome to xwsh page'.'
+';
+
+//pcntl_fork();
+//posix_getpid();
+
+$title = "My Amazing PHP Script";
+$pid = getmypid(); // you can use this to see your process title in ps
+echo cli_get_process_title();
+if (!cli_set_process_title($title)) {
+    echo "Unable to set process title for PID $pid...\n";
+    exit(1);
+} else {
+    echo "The process title '$title' for PID $pid has been set for your process!\n";
+    sleep(50);
+}
+
+
+//首先第一次调用test(),static对 $count 进行初始化，其后每一次执行完都会保留 $count 的值,不再进行初始化，相当于直接忽略了 static $count=0; 这一句。
+function test1(){
+    static $count=0;
+    echo $count;
+
+    $count++;
+}
+test1();
+test1();
+test1();
+test1();
+test1();
+//本例比较有意思的是echo a的值。相信很多人认为是12345678910吧，
+//其实不然，是1098765432。为什么呢？因为函数还没执行echoa的值。相信很多人认为是12345678910吧，其实不然，
+//是1098765432。为什么呢？因为函数还没执行echoa前就进行了下一次的函数递归。真正执行echo a是当a是当a<10条件不满足的时候，echo a,返回a,
+//返回result,对于上一层而言，执行完递归函数，开始执行本层的echo $a,依次类推
+function test($a=0,&$result=array()){
+    $a++;
+    if ($a<10) {
+        $result[]=$a;
+        test($a,$result);
+    }
+    echo $a;
+    return $result;
+
+}
+test();
+//var_dump(test());
+die;
 
 echo gettype(date('H',(9)*3600));
 

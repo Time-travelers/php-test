@@ -9,6 +9,34 @@
 echo "<pre>";
 echo "\n";
 
+class Foo {
+    function __construct() {
+        $this->bar = new Bar($this);
+    }
+
+    function __destruct() {
+        unset($this->bar);
+    }
+}
+
+class Bar {
+    function __construct($foo) {
+        $this->foo = $foo;
+    }
+}
+
+for ($i = 0; $i < 100; $i++) {
+    $obj = new Foo();
+
+    $obj->__destruct();
+
+    unset($obj);
+
+    echo memory_get_usage(), "
+";
+}
+die;
+
 
 
 print_r( get_declared_classes());

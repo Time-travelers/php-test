@@ -7,14 +7,18 @@
  */
 
 
-$str="time_dimensionality:1
-data_dimensionality:1
-start_time:
-end_time:
-order_id:
-brand_id:
-customer_id:
-department_id:";
+$str="series_ids[]:level_1%7C172
+series_ids[]:level_1%7C258
+level_ids[]:1
+level_ids[]:2
+price_tag_ids[]:1
+price_tag_ids[]:2
+channel_ids[]:100007
+channel_ids[]:100008
+publication_adv_id:110
+area_ids[]:475
+area_ids[]:507
+order_id:57444";
 
 $arr=explode("\r\n",$str);
 $res=[];

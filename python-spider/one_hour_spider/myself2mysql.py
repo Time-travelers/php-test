@@ -16,11 +16,13 @@ Modify:
 class downloader(object):
 
 	def __init__(self):
-		self.server = 'http://www.54gmgm.com:8888/'
-		self.target = 'http://www.54gmgm.com:8888/news/other/19_'
+		self.server = 'http://www.70amm.com:8888/'
+		self.target = 'http://www.70amm.com:8888/news/other/19_'
 		self.names = []			#存放章节名
 		self.urls = []			#存放章节链接
 		self.nums = 0			#章节数
+		self.headers = {'Referer':'http://www.70amm.com:8888','User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3679.0 Safari/537.36'}
+
 
 	"""
 	函数说明:获取下载链接
@@ -34,7 +36,7 @@ class downloader(object):
 	def get_download_url(self):
 
 		try:
-			req = requests.get(url = self.target)
+			req = requests.get(url = self.target,headers=self.headers)
 			req.encoding = 'gbk'
 			html = req.text
 			div_bf = BeautifulSoup(html, "html.parser")
@@ -43,7 +45,7 @@ class downloader(object):
 			a = a_bf.find_all('a')
 			# print(a)
 			self.nums = len(a[3:-3])								#剔除不必要的章节，并统计章节数
-			for each in a[1:]:
+			for each in a[3:-3]:
 				self.names.append(each.string)
 				self.urls.append(self.server + each.get('href'))
 		except IndexError:
@@ -96,7 +98,7 @@ class downloader(object):
 		2017-09-13
 	"""
 	def get_contents(self, target):
-		req = requests.get(url = target)
+		req = requests.get(url = target,headers=self.headers)
 		req.encoding = 'gbk'
 		try:
 			print(req.encoding)
@@ -134,7 +136,7 @@ class downloader(object):
 	#
 	def insert_tables(self,name, url, content):
 		# 打开数据库连接:host-连接主机地址,port-端口号,user-用户名,passwd-用户密码,db-数据库名,charset-编码
-		conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='come11234', db='book',
+		conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='come11234', db='city',
 							   charset='utf8')
 		# 使用cursor()方法获取操作游标
 		cursor = conn.cursor()
@@ -155,7 +157,7 @@ class downloader(object):
 if __name__ == "__main__":
 	dl = downloader()
 
-	page=list(range(1,2))
+	page=list(range(1,3))
 	target=dl.target
 
 	# dl.insert_tables('踢打发发送到','xxx', 'xwsh')
@@ -164,13 +166,17 @@ if __name__ == "__main__":
 		dl.target=target+str(i+38)+'.html'
 		print(dl.target)
 		dl.get_download_url()
+		print(dl.nums)
+		print(dl.urls)
+		print(dl.names)
+
 		print('开始下载：')
 
 		for i in range(dl.nums):
-			# print(dl.names[i])
-			# print(dl.urls[i])
+			print(dl.names[i])
+			print(dl.urls[i])
 			time.sleep(10)
-			# dl.writer(dl.names[i], '小说.txt', dl.get_contents(dl.urls[i]))
+			dl.writer(dl.names[i], '小说.txt', dl.get_contents(dl.urls[i]))
 			dl.insert_tables(dl.names[i],dl.urls[i],dl.get_contents(dl.urls[i]))
 			sys.stdout.write("  已下载:%.3f%%" %  float(i/dl.nums*100) + '\r')
 			sys.stdout.flush()

@@ -16,12 +16,12 @@ Modify:
 class downloader(object):
 
 	def __init__(self):
-		self.server = 'http://www.70amm.com:8888/'
-		self.target = 'http://www.70amm.com:8888/news/other/19_'
+		self.server = 'http://www.62xxoo.com:8888/'
+		self.target = 'http://www.62xxoo.com:8888/news/other/19_'
 		self.names = []			#存放章节名
 		self.urls = []			#存放章节链接
 		self.nums = 0			#章节数
-		self.headers = {'Referer':'http://www.70amm.com:8888','User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3679.0 Safari/537.36'}
+		self.headers = {'Referer':'http://www.62xxoo.com:8888/','User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/73.0.3679.0 Safari/537.36'}
 
 
 	"""

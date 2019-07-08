@@ -456,7 +456,7 @@ $tem=new Zi();
 $tem->show();
 
 die;
-class A {
+class A2 {
 
     public $base = 100;
 
@@ -560,14 +560,14 @@ echo $str[1];
 
 die;
 
-class A{
+class A1{
 	public $a=1;
 	function e(){
-	   echo $a;
+	   echo $this->a;
 	}
 }
-$a=new A();
-$c=new A();
+$a=new A1();
+$c=new A1();
 
 $b=$a;
 var_dump($b);

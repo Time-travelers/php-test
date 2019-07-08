@@ -102,8 +102,6 @@ function guibing(&$arr,$l,$r){
     }
 
     $mid=intval(($r+$l)/2);
-
-    echo $mid;
     guibing($arr,$l,$mid);
     guibing($arr,$mid+1,$r);
 
@@ -115,32 +113,76 @@ function guibing(&$arr,$l,$r){
 
 }
 function mergeArray(&$arr,$start,$mid,$end){
-    $i = $start;
-    $j=$mid + 1;
-    $k = $start;
-    $temparr = array();
+//    $i = $start;
+//    $j=$mid + 1;
+//    $k = $start;
+//    $temparr = array();
+//
+//    while($i!=$mid+1 && $j!=$end+1)
+//    {
+//        if($arr[$i] >= $arr[$j]){
+//            $temparr[$k++] = $arr[$j++];
+//        }
+//        else{
+//            $temparr[$k++] = $arr[$i++];
+//        }
+//    }
+//
+//    //将第一个子序列的剩余部分添加到已经排好序的 $temparr 数组中
+//    while($i != $mid+1){
+//        $temparr[$k++] = $arr[$i++];
+//    }
+//    //将第二个子序列的剩余部分添加到已经排好序的 $temparr 数组中
+//    while($j != $end+1){
+//        $temparr[$k++] = $arr[$j++];
+//    }
+//    for($i=$start; $i<=$end; $i++){
+//        $arr[$i] = $temparr[$i];
+//    }
 
-    while($i!=$mid+1 && $j!=$end+1)
-    {
-        if($arr[$i] >= $arr[$j]){
-            $temparr[$k++] = $arr[$j++];
-        }
-        else{
-            $temparr[$k++] = $arr[$i++];
-        }
-    }
 
-    //将第一个子序列的剩余部分添加到已经排好序的 $temparr 数组中
-    while($i != $mid+1){
-        $temparr[$k++] = $arr[$i++];
+//     合并两个有序数组
+//    $arr[$start]-$arr[$mid]   &&  $arr[$mid+1]-$arr[$end];
+//    暂存  两个有序数组排序结果到一个数组中
+    $i=$start;
+    $j=$mid+1;
+    $k=$start;
+    $temp=[];
+
+    while ($i<=$mid&&$j<=$end){
+
+        if($arr[$i]<$arr[$j]){
+            $temp[$k]=$arr[$i];
+            $k++;
+            $i++;
+        }else{
+            $temp[$k]=$arr[$j];
+            $k++;
+            $j++;
+        }
+
     }
-    //将第二个子序列的剩余部分添加到已经排好序的 $temparr 数组中
-    while($j != $end+1){
-        $temparr[$k++] = $arr[$j++];
+    if($i>$mid){
+        while($j <=$end){
+            $temp[$k]=$arr[$j];
+            $k++;
+            $j++;
+        }
     }
+    if($j>$end){
+        while($i <=$mid){
+            $temp[$k]=$arr[$i];
+            $k++;
+            $i++;
+        }
+    }
+//   把排序好的内容 填充到 arr
     for($i=$start; $i<=$end; $i++){
-        $arr[$i] = $temparr[$i];
+
+        $arr[$i]=$temp[$i];
     }
+
+
 }
 //快速排序
 function kuaipai(&$arr,$left,$ritht){
@@ -215,4 +257,46 @@ function kuaipai(&$arr,$left,$ritht){
 // print_r($arr);
 guibing($arr,0,count($arr)-1);
 print_r($arr);
+die;
+//合并两个有序数组
+
+function merge_array($a,$b){
+
+    $i=count($a);
+    $j=count($b);
+
+    $s1=0;
+    $s2=0;
+    $res=[];
+    while ($s1<$i&&$s2<$j){
+
+        if($a[$s1]<$b[$s2]){
+            $res[]=$a[$s1];
+            $s1++;
+        }else{
+            $res[]=$b[$s2];
+            $s2++;
+        }
+    }
+    if($s1>=$i){
+
+        while ($s2<$j){
+            $res[]=$b[$s2];
+            $s2++;
+        }
+    }
+    if($s2>=$j){
+
+        while ($s1<$i){
+            $res[]=$a[$s1];
+            $s1++;
+        }
+    }
+
+    return $res;
+
+
+}
+print_r(merge_array([1,5,6,9],[2,4,6,8]));
+
 

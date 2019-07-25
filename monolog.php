@@ -3,6 +3,14 @@
 	use Monolog\Logger;
 	use Monolog\Handler\StreamHandler;
 	use Monolog\Handler\FirePHPHandler;
+
+
+//monolog - PHP 日志神器
+//StreamHandler：记录日志到任何 PHP stream，用它来记录到文件。
+//
+//RotatingFileHandler: 每天一个文件，会自动删除比$maxFiles老的文件，这只是一个很随意的方案，You should use logrotate for high profile setups though。
+//
+//SyslogHandler: 记录到系统日志
 	// 创建日志频道
 	$log = new Logger('log');
 	$log_name = new Logger('log_name');
@@ -34,7 +42,7 @@
 	$log->addWarning('Foo',['name'=>'xwsh']);
 	$log->addError('Bar',['name'=>'xwsh']);
     $log->addInfo('My logger is now ready',['name'=>'xwsh']);
-    $log_name->addInfo('My logger is now ready',['name'=>'xwsh']);
+//    $log_name->addInfo('My logger is now ready',['name'=>'xwsh']);
 
 //    $log->addRecord();
 

@@ -6,3 +6,4 @@ git add
 
 
 change two
+echo 'test';

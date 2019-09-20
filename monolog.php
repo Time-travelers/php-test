@@ -30,8 +30,9 @@
 //    $socket=new \Monolog\Handler\SocketHandler();  //通过socket写日志。
 
 	$log->pushHandler($stream);
-    $log->pushHandler($firePhp);
-    $log_name->pushHandler($stream_name);
+//    $log->pushHandler($firePhp);
+//    $log_name->pushHandler($stream_name);
+//    $log_name->pushHandler($logStash);
 
 //Processor可以为日志记录添加额外的信息
     $log->pushProcessor(function ($record) {
@@ -42,7 +43,42 @@
 	$log->addWarning('Foo',['name'=>'xwsh']);
 	$log->addError('Bar',['name'=>'xwsh']);
     $log->addInfo('My logger is now ready',['name'=>'xwsh']);
+    $log->info('My logger is now ready');
 //    $log_name->addInfo('My logger is now ready',['name'=>'xwsh']);
 
 //    $log->addRecord();
 
+//{
+//    "message": "My logger is now ready",
+//    "context": {
+//    "name": "xwsh"
+//    },
+//    "level": 200,
+//    "level_name": "INFO",
+//    "channel": "log",
+//    "datetime": {
+//    "date": "2019-09-20 06:56:26.540696",
+//        "timezone_type": 3,
+//        "timezone": "UTC"
+//    },
+//    "extra": {
+//    "dummy": "Hello world!"
+//    }
+//}
+//
+//
+//{
+//    "message": "My logger is now ready",
+//    "context": [],
+//    "level": 200,
+//    "level_name": "INFO",
+//    "channel": "log",
+//    "datetime": {
+//    "date": "2019-09-20 06:56:26.541095",
+//        "timezone_type": 3,
+//        "timezone": "UTC"
+//    },
+//    "extra": {
+//    "dummy": "Hello world!"
+//    }
+//}

@@ -17,14 +17,14 @@ postman用的 k：v 转json
 
 echo $msg;
 $_GET['str']='
-sign:6972d9a1ff14a610693869eaed9c8376
-_t:1562296148
-point_id:9
-apply_id:116936
-status:1
-reset_point_id:0
-group_id:\'\'
-uid:1005046
+order_id:61011
+code:
+customer_name:
+salespersonDeparts:
+brand:
+dealer_id:
+start_time:
+end_time:
 ';
 $_GET['json']='{"token":"2e5e9cdaa074cf865d4d80006bf124f9","sign":"963593b841787fde2bcec4d74db0dbf1","_t":1562297345,"point_id":9,"apply_id":116915,"status":1,"reset_point_id":0,"group_id":"","uid":"1005046"}';
 

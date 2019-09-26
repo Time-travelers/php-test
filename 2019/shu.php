@@ -77,6 +77,7 @@ function bo1($num){
         $n[$i]=$n[$i-1]+$n[$i-2];
 
     }
+    var_dump($n);
     return  $n;
 
 

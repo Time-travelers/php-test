@@ -43,6 +43,10 @@ class demo implements Idemo {
 $c['a']=1;
 $c['b']=3;
 $demo=demo::getIntance();
+$demo1=demo::getIntance();
+var_dump($demo);
+var_dump($demo1);
+var_dump(new demo());
 //$dd=new demo();
 echo $demo->add($c['a'],$c['b']);
 echo '<pre>';

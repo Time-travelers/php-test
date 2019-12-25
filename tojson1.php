@@ -5,14 +5,16 @@
  * Date: 2019/8/19
  * Time: 14:29
  */
-    $str="order_id:61011
-code:
-customer_name:
-salespersonDeparts:
-brand:
-dealer_id:
-start_time:
-end_time:";
+    $str="start_time:2019-01-01
+end_time:2019-12-30
+type:1
+service_line:1000066
+remark:测试
+file_info[0][file_id]:28022
+file_info[0][file_name]:【商保】阳光人寿-理赔材料清单.pdf
+file_info[1][file_id]:28021
+file_info[1][file_name]:塞纳德财务报表商务平台11.25.xls
+";
 
 $arr=explode("\r\n",$str);
 $res=[];

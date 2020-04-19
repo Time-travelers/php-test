@@ -19,9 +19,9 @@ use Thrift\Exception\TException;
 
 try {
     if (array_search('--http',$argv)) {
-        $socket = new THttpClient('localhost',8080,'/Server.php');
+        $socket = new THttpClient('localhost',8080,'/server.php');
     } else {
-        $socket = new TSocket('localhost',9090);
+        $socket = new TSocket('localhost',8080);
     }
 
     $transport = new TBufferedTransport($socket,1024,1024);

@@ -5,15 +5,20 @@
  * Date: 2019/8/19
  * Time: 14:29
  */
-    $str="start_time:2019-01-01
-end_time:2019-12-30
-type:1
-service_line:1000066
-remark:测试
-file_info[0][file_id]:28022
-file_info[0][file_name]:【商保】阳光人寿-理赔材料清单.pdf
-file_info[1][file_id]:28021
-file_info[1][file_name]:塞纳德财务报表商务平台11.25.xls
+    $str="video[0][id]:47
+video[0][name]:4147
+video[0][url]:3
+video[0][video_type]:1
+video[0][duration]:100
+video[0][size]:1000
+publish[0][id]:57
+//publish[0][file_id]:1
+publish[0][account_id]:1
+publish[0][cover]:1
+publish[0][title]:title111111
+publish[0][timing_flag]:1
+publish[0][timing_publish]:2019
+publish[0][draft]:1
 ";
 
 $arr=explode("\r\n",$str);

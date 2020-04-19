@@ -18,6 +18,7 @@ while (1){
         $user=json_decode($user,true);
 
         $db->insert('redis',['order_id'=>$user['uId'],'create_time'=>$user['time']]);
+        sleep(2);
     }else{
         sleep(2);
         continue;

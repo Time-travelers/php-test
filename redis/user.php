@@ -15,7 +15,7 @@ for($i=0;$i<100;$i++){
     $uId=rand(10000,99999);
     $arr['uId']=$uId;
     $arr['time']=time();
-    if($redis->lLen($redis_name)<10){
+    if($redis->lLen($redis_name)<50){
         $redis->lPush($redis_name,json_encode($arr));
         echo $uId.'秒杀成功'.'<br>';
     }else{
